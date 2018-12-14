@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="1.7">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="8298"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2018-12-14 12:00:29 PM"/>
+        <attribute name="created" value="ODI5ODsgMzUzNjkwNy1TMTEwOyAyMDE4LTExLTE2OyAxMjoyMTozNSBQTTsgMjIzNg=="/>
+        <attribute name="edited" value="ODI5ODsgMzUzNjkwNy1TMTEyOyAyMDE4LTEyLTE0OyAxMjowMDoyOSBQTTsgMjIzNw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Outputting to a file is not supported, therefore I will use my code in comments at points where variables would be recorded. To highlight that it is outputting code, the comments will start with &quot;#OC&quot;."/>
+            <comment text="#OC - &#13;&#10;saveFile = open('sampleFile.txt', 'w')"/>
+            <comment text="#OC -&#13;&#10;saveFile = open(&quot;(Round, Player, Total of Dice)\n&quot;, &quot;w&quot;)"/>
+            <declare name="points1" type="Integer" array="False" size="" variables="points1"/>
+            <declare name="points2" type="Integer" array="False" size="" variables="points2"/>
+            <assign variable="points1" expression="0"/>
+            <assign variable="points2" expression="0"/>
+            <declare name="pass1" type="String" array="False" size="" variables="pass1"/>
+            <declare name="pass2" type="String" array="False" size="" variables="pass2"/>
+            <assign variable="pass1" expression="&quot;Sheikh&quot;"/>
+            <assign variable="pass2" expression="&quot;Haroon&quot;"/>
+            <declare name="player1" type="String" array="False" size="" variables="player1"/>
+            <declare name="player2" type="String" array="False" size="" variables="player2"/>
+            <output expression="&quot;Player1 | Enter your name:&quot;"/>
+            <input variable="player1"/>
+            <output expression="&quot;Player2 | Enter your name:&quot;"/>
+            <input variable="player2"/>
+            <if expression="(player1 = pass1 or player1 = pass2) AND (player2 = pass1 or player2 = pass2)">
+                <then>
+                    <output expression="&quot;Authorised!&quot;"/>
+                    <output expression="&quot;Welcome &quot; &amp; player1 &amp; &quot; and &quot; &amp; player2 &amp;&quot;!&quot;"/>
+                    <output expression="&quot;You have 5 rounds to throw two dice...&quot;"/>
+                    <output expression="&quot;If you get an even total you recieve 10 points! &quot; &amp; &quot;However if you get an odd total, you lose 5 points! &quot; &amp; &quot; Both players start with 0 points and whoever gets the higher total wins!&quot;"/>
+                    <declare name="ready1" type="String" array="False" size="" variables="ready1"/>
+                    <output expression="player1 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                    <input variable="ready1"/>
+                    <declare name="ready2" type="String" array="False" size="" variables="ready2"/>
+                    <output expression="player2 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                    <input variable="ready2"/>
+                    <if expression="(ready1 = &quot;y&quot; or ready1 = &quot;Y&quot;) AND (ready2 = &quot;y&quot; or ready2 =&quot;Y&quot;)">
+                        <then>
+                            <output expression="&quot;Great! Let's Begin!&quot;"/>
+                        </then>
+                        <else>
+                            <while expression="(ready1 = &quot;n&quot; or ready1 = &quot;N&quot;) or (ready2 = &quot;N&quot; or ready2 =&quot;n&quot;)">
+                                <output expression="player1 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                                <input variable="ready1"/>
+                                <output expression="player2 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                                <input variable="ready2"/>
+                            </while>
+                            <output expression="&quot;Great! Let's Begin!&quot;"/>
+                        </else>
+                    </if>
+                    <output expression="player1 &amp; &quot; First! Then &quot; &amp; player2"/>
+                    <declare name="round" type="Integer" array="False" size="" variables="round"/>
+                    <assign variable="round" expression="0"/>
+                    <while expression="round &lt;5">
+                        <assign variable="round" expression="round + 1"/>
+                        <output expression="&quot;Round &quot; &amp; round &amp; &quot;: -------------------&quot;"/>
+                        <declare name="p1d1" type="Integer" array="False" size="" variables="p1d1"/>
+                        <assign variable="p1d1" expression="random(6)+1"/>
+                        <declare name="p1d2" type="Integer" array="False" size="" variables="p1d2"/>
+                        <assign variable="p1d2" expression="random(6)+1"/>
+                        <declare name="total1" type="Integer" array="False" size="" variables="total1"/>
+                        <assign variable="total1" expression="0"/>
+                        <assign variable="total1" expression="p1d1 + p1d2"/>
+                        <if expression="total1 = 2 or total1 = 4 or total1 = 6 or total1 = 8 or total1 = 10 or total1 = 12">
+                            <then>
+                                <assign variable="points1" expression="points1 + 10"/>
+                            </then>
+                            <else>
+                                <assign variable="points1" expression="points1 - 5"/>
+                                <if expression="points1 &lt; 0">
+                                    <then>
+                                        <assign variable="points1" expression="0"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                        <output expression="&quot;Rolling dice for &quot; &amp; player1 &amp; &quot;...&quot;"/>
+                        <output expression="&quot;The numbers are &quot; &amp; p1d1 &amp; &quot; &amp; &quot; &amp; p1d2"/>
+                        <output expression="&quot;The total of those numbers were &quot; &amp; total1"/>
+                        <output expression="&quot;So far &quot;&amp; player1 &amp;&quot; has &quot; &amp; points1 &amp;&quot; points!&quot;"/>
+                        <if expression="(p1d1 = p1d2) and (p1d2 = p1d1)">
+                            <then>
+                                <while expression="(p1d1 = p1d2) and (p1d2 = p1d1)">
+                                    <output expression="&quot;Because Player 1 rolled a double, Player 1 recieves an additional throw!&quot;"/>
+                                    <assign variable="p1d1" expression="random(6)+1"/>
+                                    <assign variable="p1d2" expression="random(6)+1"/>
+                                    <assign variable="total1" expression="0"/>
+                                    <assign variable="total1" expression="p1d1 + p1d2"/>
+                                    <if expression="total1 = 2 or total1 = 4 or total1 = 6 or total1 = 8 or total1 = 10 or total1 = 12">
+                                        <then>
+                                            <assign variable="points1" expression="points1 + 10"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="points1" expression="points1 - 5"/>
+                                            <if expression="points1 &lt; 0">
+                                                <then>
+                                                    <assign variable="points1" expression="0"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                        </else>
+                                    </if>
+                                    <output expression="&quot;Rolling dice for &quot; &amp; player1 &amp; &quot;...&quot;"/>
+                                    <output expression="&quot;The numbers are &quot; &amp; p1d1 &amp; &quot; &amp; &quot; &amp; p1d2"/>
+                                    <output expression="&quot;The total of those numbers were &quot; &amp; total1"/>
+                                    <output expression="&quot;So far &quot;&amp; player1 &amp;&quot; has &quot; &amp; points1 &amp;&quot; points!&quot;"/>
+                                </while>
+                            </then>
+                            <else/>
+                        </if>
+                        <declare name="p2d1" type="Integer" array="False" size="" variables="p2d1"/>
+                        <declare name="p2d2" type="Integer" array="False" size="" variables="p2d2"/>
+                        <declare name="total2" type="Integer" array="False" size="" variables="total2"/>
+                        <assign variable="p2d1" expression="random(6)+1"/>
+                        <assign variable="p2d2" expression="random(6)+1"/>
+                        <assign variable="total2" expression="p2d1 + p2d2"/>
+                        <if expression="total2 = 2 or total2 = 4 or total2 = 6 or total2 = 8 or total2 = 10 or total2 = 12">
+                            <then>
+                                <assign variable="points2" expression="points2 + 10"/>
+                            </then>
+                            <else>
+                                <assign variable="points2" expression="points2 - 5"/>
+                                <if expression="points2 &lt; 0">
+                                    <then>
+                                        <assign variable="points2" expression="0"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                        <output expression="&quot;Rolling dice for &quot; &amp; player2 &amp; &quot;...&quot;"/>
+                        <output expression="&quot;The numbers are &quot; &amp; p2d1 &amp; &quot; &amp; &quot; &amp; p2d2"/>
+                        <output expression="&quot;The total of those numbers were &quot; &amp; total2"/>
+                        <output expression="&quot;So far &quot;&amp; player2 &amp;&quot; has &quot; &amp; points2 &amp;&quot; points!&quot;"/>
+                        <if expression="(p2d1 = p2d2) and (p2d2 = p2d1)">
+                            <then>
+                                <while expression="(p2d1 = p2d2) and (p2d2 = p2d1)">
+                                    <output expression="&quot;Because Player 2 rolled a double, Player 2 recieves an additional throw!&quot;"/>
+                                    <assign variable="p2d1" expression="random(6)+1"/>
+                                    <assign variable="p2d2" expression="random(6)+1"/>
+                                    <assign variable="total2" expression="0"/>
+                                    <assign variable="total2" expression="p2d1 + p2d2"/>
+                                    <if expression="total2 = 2 or total2 = 4 or total2 = 6 or total2 = 8 or total2 = 10 or total2 = 12">
+                                        <then>
+                                            <assign variable="points2" expression="points2 + 10"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="points2" expression="points2 - 5"/>
+                                            <if expression="points2 &lt; 0">
+                                                <then>
+                                                    <assign variable="points2" expression="0"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                        </else>
+                                    </if>
+                                    <output expression="&quot;Rolling dice for &quot; &amp; player2 &amp; &quot;...&quot;"/>
+                                    <output expression="&quot;The numbers are &quot; &amp; p2d1 &amp; &quot; &amp; &quot; &amp; p2d2"/>
+                                    <output expression="&quot;The total of those numbers were &quot; &amp; total2"/>
+                                    <output expression="&quot;So far &quot;&amp; player2 &amp;&quot; has &quot; &amp; points2 &amp;&quot; points!&quot;"/>
+                                </while>
+                            </then>
+                            <else/>
+                        </if>
+                    </while>
+                    <if expression="points1 = points2">
+                        <then>
+                            <comment text="same = &quot;Round was a draw&quot;"/>
+                            <comment text="filetext = (same, total1)"/>
+                            <comment text="saveFile.write(str(filetext))"/>
+                            <comment text="saveFile.write(&quot;\n&quot;)"/>
+                            <if expression="points1 = points2">
+                                <then>
+                                    <output expression="&quot;It's a Draw, time for quick fire rounds!&quot;"/>
+                                </then>
+                                <else/>
+                            </if>
+                            <output expression="player1 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                            <input variable="ready1"/>
+                            <output expression="player2 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                            <input variable="ready2"/>
+                            <if expression="(ready1 = &quot;y&quot; or ready1 = &quot;Y&quot;) AND (ready2 = &quot;y&quot; or ready2 =&quot;Y&quot;)">
+                                <then>
+                                    <output expression="&quot;Great! Let's Begin!&quot;"/>
+                                </then>
+                                <else>
+                                    <while expression="(ready1 = &quot;n&quot; or ready1 = &quot;N&quot;) or (ready2 = &quot;N&quot; or ready2 =&quot;n&quot;)">
+                                        <output expression="player1 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                                        <input variable="ready1"/>
+                                        <output expression="player2 &amp; &quot; are you ready?: (y/n) &quot;"/>
+                                        <input variable="ready2"/>
+                                    </while>
+                                    <output expression="&quot;Great! Let's Begin!&quot;"/>
+                                </else>
+                            </if>
+                            <output expression="player2 &amp; &quot; First! Then &quot; &amp; player1"/>
+                            <declare name="roundb" type="Integer" array="False" size="" variables="roundb"/>
+                            <assign variable="roundb" expression="0"/>
+                            <while expression="points1 = points2">
+                                <declare name="p2d1" type="Integer" array="False" size="" variables="p2d1"/>
+                                <declare name="p2d2" type="Integer" array="False" size="" variables="p2d2"/>
+                                <declare name="p1" type="Integer" array="False" size="" variables="p1"/>
+                                <declare name="p2" type="Integer" array="False" size="" variables="p2"/>
+                                <assign variable="roundb" expression="roundb +1"/>
+                                <assign variable="p2d1" expression="random(6)+1"/>
+                                <assign variable="p2d2" expression="random(6)+1"/>
+                                <assign variable="p2" expression="p2d1 + p2d2"/>
+                                <if expression="p2 = 2 or p2 = 4 or p2 = 6 or p2 = 8 or p2 = 10 or p2 = 12">
+                                    <then>
+                                        <assign variable="points2" expression="points2 + 10"/>
+                                    </then>
+                                    <else>
+                                        <assign variable="points2" expression="points2 - 5"/>
+                                        <if expression="points2 &lt; 0">
+                                            <then>
+                                                <assign variable="points2" expression="0"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </else>
+                                </if>
+                                <output expression="&quot;Round &quot; &amp; roundb &amp; &quot;: -------------------&quot;"/>
+                                <output expression="&quot;Rolling die for &quot; &amp; player2 &amp; &quot;...&quot;"/>
+                                <output expression="&quot;The numbers are &quot; &amp; p2d1 &amp; &quot; &quot; &amp; p2d2"/>
+                                <output expression="&quot;The total of those numbers were &quot; &amp; p2"/>
+                                <output expression="&quot;So far &quot; &amp; player2 &amp; &quot; has &quot; &amp; points2 &amp; &quot; points!&quot;"/>
+                                <declare name="p1d1" type="Integer" array="False" size="" variables="p1d1"/>
+                                <declare name="p1d2" type="Integer" array="False" size="" variables="p1d2"/>
+                                <assign variable="p1d1" expression="random(6)+1"/>
+                                <assign variable="p1d2" expression="random(6)+1"/>
+                                <assign variable="p1" expression="p1d1 + p1d2"/>
+                                <if expression="p1 = 2 or p1 = 4 or p1 = 6 or p1 = 8 or p1= 10 or p1 = 12">
+                                    <then>
+                                        <assign variable="points1" expression="points1 + 10"/>
+                                    </then>
+                                    <else>
+                                        <assign variable="points1" expression="points1 - 5"/>
+                                        <if expression="points1 &lt; 0">
+                                            <then>
+                                                <assign variable="points1" expression="0"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </else>
+                                </if>
+                                <output expression="&quot;Rolling die for &quot; &amp; player1 &amp; &quot;...&quot;"/>
+                                <output expression="&quot;The numbers are &quot; &amp; p1d1 &amp; &quot; &quot; &amp; p1d2"/>
+                                <output expression="&quot;The total of those numbers were &quot; &amp; p1"/>
+                                <output expression="&quot;So far &quot; &amp; player1 &amp; &quot; has &quot; &amp; points1 &amp; &quot; points!&quot;"/>
+                            </while>
+                            <if expression="point1 &gt; point2">
+                                <then>
+                                    <declare name="winner" type="String" array="False" size="" variables="winner"/>
+                                    <assign variable="winner" expression="player1"/>
+                                </then>
+                                <else>
+                                    <declare name="winner" type="String" array="False" size="" variables="winner"/>
+                                    <assign variable="winner" expression="player2"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <if expression="points1 &gt; points2">
+                                <then>
+                                    <output expression="&quot;The winner is &quot; &amp; player1 &amp; &quot; who is Player1!&quot;"/>
+                                    <comment text="strround = round"/>
+                                    <comment text="filetext = (roundstr, player2, higher)"/>
+                                    <comment text="saveFile.write(str(filetext))"/>
+                                    <comment text="saveFile.write(&quot;\n&quot;)"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;The winner is &quot; &amp; player2 &amp; &quot; who is Player2!&quot;"/>
+                                    <comment text="strround = round"/>
+                                    <comment text="filetext = (roundstr, player2, higher)"/>
+                                    <comment text="saveFile.write(str(filetext))"/>
+                                    <comment text="saveFile.write(&quot;\n&quot;)"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                    <comment text="saveFile.write(&quot;\n&quot;)"/>
+                    <comment text="saveFile.write(&quot;The winner (with the most points) is:\n&quot;)"/>
+                    <comment text="saveFile.write(str(winner))"/>
+                    <comment text="saveFile.close()"/>
+                </then>
+                <else>
+                    <output expression="&quot;Error 403: Forbidden!&quot;"/>
+                </else>
+            </if>
+            <comment text="Code 8298"/>
+        </body>
+    </function>
+</flowgorithm>
