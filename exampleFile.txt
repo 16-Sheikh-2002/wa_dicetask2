@@ -2,7 +2,7 @@
 ('1', 'Sheikh', '7')
 (('2', 'was a draw'), 7)
 ('3', 'Sheikh', '9')
-('4', 'Haroon', '11')
+('4', 'Sheikh2', '11')
 ('5', 'Sheikh', '7')
 
 The winner (with the most points) is:
