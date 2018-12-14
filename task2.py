@@ -4,7 +4,7 @@ import time
 saveFile = open('F:\Documents\exampleFile.txt','w')
 saveFile.write("(Round, Player, Total of Dice):\n")
 pass1 = "Sheikh"
-pass2 = "Haroon"
+pass2 = "Sheikh2"
 player1 = input("Player 1, enter your name (Case sensitive): ")
 player2 = input("Player 2, enter your name (Case sensitive): ")
 point1 = 0
